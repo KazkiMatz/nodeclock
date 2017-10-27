@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  div.container
+    div.header.clearfix
+      nav
+        ul.nav.nav-pills.pull-right
+          li(role="presentation")
+            a(href="https://clockpad.net/dashboard")= "ClockPad Dashboard"
+      h3.text-muted= "NodeClock "
+        small= " - An example ClockPad API client"
+
+    div.jumbotron
+      form.form-horizontal.form-label-left
+        div.form-group
+          label.control-label.col-md-4.col-sm-4.col-xs-12= "Subscription Token"
+          div.col-md-8.col-sm-8.col-xs-12
+            input.form-control(type="text", value=subscription_token, readonly="")
+      p
+        a.btn.btn-primary(href="/consoles", onclick="window.open('/consoles','popup','width=600,height=600'); return false;", target="popup", role="button")= "Import Scanner Data"
+
+    div
+      h2= "Realtime events"
+      table.table.table-striped.event-messages
+        thead
+          tr
+            th= "Time"
+            th= "Raw json"
+        tbody
+
+  script.
+    var socket = io.connect();
+    socket.on('msg', function (msg) {
+      var $tbody = $('table.event-messages tbody');
+      var strTime = (new Date().toLocaleString());
+      var $tr = $('<tr><td>' + strTime + '</td><td><div class="beautify-json">' + JSON.stringify(msg, null, ' ') + '</div></td></tr>');
+
+      $tbody.prepend($tr);
+      $tr.find('.beautify-json').beautifyJSON({
+        hoverable: true,
+        collapsible: true,
+        color: true
+      });
+    });

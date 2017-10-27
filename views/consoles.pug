@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.container
+    div
+      h2= "Scanners"
+      div.response
+        if error
+          p= `error: ${error}`
+        p
+          span= `status_code: ${status_code}`
+
+      div.consoles
+        div
+          i.fa.fa-refresh.fa-spin("aria-hidden"="true")
+
+  script.
+    $(function () {
+      var $json = $('!{'<div class="beautify-json">' + JSON.stringify(items) + '</div>'}');
+
+      $('.consoles > div').replaceWith($json);
+      $json.beautifyJSON({
+        type: "strict",
+        hoverable: true,
+        collapsible: true,
+        color: true
+      });
+    });

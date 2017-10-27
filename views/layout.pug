@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= "NodeClock"
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
+    link(href="/styles.css", rel="stylesheet")
+    link(href="/jquery.beautify-json/beautify-json.css", rel="stylesheet")
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(src='/jquery.beautify-json/jquery.beautify-json.js')
+    script(src='/socket.io/socket.io.js')
+
+  body
+    block content
